@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const postSchema = mongoose.Schema(
     {
+        
         title: {
             type: String,
             required: true,
@@ -26,9 +27,18 @@ const postSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
+        content:{
+            type: String,
+            required: true,
+        },
         likes: {
             type: Number,
             default: 0,
+        },
+        image:{
+            type: String,
+            default: null,
+            trim: true,
         },
         comments: {
             type: Number,
@@ -36,13 +46,18 @@ const postSchema = mongoose.Schema(
         },
         date: {
             type: String,
-            required: true,
-            trim: true,
+           default:Date.now(),
         },
         tags: {
             type: [String],
             default: [],
         },
+        status:{
+            type: String,
+            enum: ['draft', 'published'],
+            default: 'published',
+           
+        }
     },
     {
         timestamps: true,

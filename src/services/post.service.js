@@ -7,7 +7,7 @@ const createPost = async (postData) => {
 };
 
 const getPostById = async (postId) => {
-  return postModel.findById(postId);
+  return await postModel.findById(postId).populate({path:'author'});
 };
 
 const updatePostById = async (postId, updateData) => {
@@ -29,7 +29,7 @@ const deletePostById = async (postId) => {
   return post;
 };
 const getPostByfilter = async (filter) => {
-  return postModel.find(filter);
+  return postModel.find(filter).populate({path:'author'}).sort({ createdAt: -1 });
 }
 
 module.exports = {
