@@ -16,7 +16,8 @@ const createPost = async (req, res) => {
 };
 
 const getPost = async (req, res) => {
-    const post = await postService.getPostById(req.params.postId);
+        const postId = req.params.postId;
+    const post = await postService.getPostById(postId);
     if (!post) {
         return res.status(404).send({ message: 'Post not found' });
     }
